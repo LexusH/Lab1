@@ -3,15 +3,50 @@ package main;
 //@Author Lexus Hartung
 //@Author Julius Walton
 
+import java.util.*;
+import java.io.*;
+
 //Class for running all password breaking efforts
 public class Driver {
 
 	public static void main(String[] args) {
+		List<String> pass = new ArrayList<>();
+
 		//Call on password file by name
-		//parse input by rules: username:encyption[:otherstuff]
-		//send parsed values through different password cracks,
-		//if one method finds answer, don't send it to the others!
-		//ends when passwords have been thought all calls
+		System.out.println("Please input the path to your password file ");
+		Scanner in = new Scanner(System.in);
+		String path = in.next();
+
+		File file = new File(path);
+
+		try{
+			BufferedReader buffer = new BufferedReader(new FileReader(file));
+			
+			String hold;
+			while ((hold = buffer.readLine()) != null){ 
+    				pass.add(hold);
+			}
+			
+			buffer.close();
+			
+			//parse input by form: username:encyption[:otherstuff]
+			List<String> parse = new ArrayList<>();
+			int S = pass.size();
+			
+			for(int i = 0; i < S; ++i){
+				String[] split = pass.get(i).split("[:]");
+				parse.add(split[1]);	
+			}
+
+			//send parsed values through different password cracks
+		}
+
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+
+		
+		
 	}
 
 }
