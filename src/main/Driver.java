@@ -14,9 +14,11 @@ public class Driver {
 
 		//Call on password file by name
 		System.out.println("Please input the path to your password file ");
+		
 		Scanner in = new Scanner(System.in);
 		String path = in.next();
-
+		in.close();
+		
 		File file = new File(path);
 
 		try{
@@ -39,10 +41,12 @@ public class Driver {
 			}
 
 			//send parsed values through different password cracks
+			Char5_A_L C = new Char5_A_L(parse.get(0));
+			C.found();
 		}
 
 		catch(Exception e){
 			System.out.println(e.getMessage());
 		}
-
+	}
 }
