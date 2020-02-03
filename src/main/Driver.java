@@ -45,7 +45,9 @@ public class Driver {
 			export.clearFile();
 			
 			//Send parsed values through different password cracks
-			Char5_A_L C = new Char5_A_L(parse.get(0));
+			//Char5_A_L C = new Char5_A_L(parse.get(0));
+			//C.found();
+			Char7_Capital_Num C = new Char7_Capital_Num(parse.get(0));
 			C.found();
 		}
 
