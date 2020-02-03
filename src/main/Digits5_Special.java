@@ -2,10 +2,6 @@ package main;
 
 import java.util.ArrayList;
 
-//imports needed for SHA-256 hashing
-import java.math.BigInteger;  
-import java.nio.charset.StandardCharsets; 
-import java.security.MessageDigest;  
 import java.security.NoSuchAlgorithmException;  
 
 
@@ -39,7 +35,8 @@ public class Digits5_Special {
 			if(frontPad.length()==0) {
 				for(int j = 0; j < counter; j++) {
 					password = String.format("%05d", j);
-					hashedPassword = shaHash(password);
+					shaHash H = new shaHash(password);
+					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
 						return password;
 					}
@@ -50,7 +47,8 @@ public class Digits5_Special {
 				for(int j = 0; j < counter/10; j++) {
 					String numberPad = String.format("%04d", j);
 					password = frontPad + numberPad;
-					hashedPassword = shaHash(password);
+					shaHash H = new shaHash(password);
+					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
 						return password;
 					}
@@ -61,7 +59,8 @@ public class Digits5_Special {
 				for(int j = 0; j < counter/100; j++) {
 					String numberPad = String.format("%03d", j);
 					password = frontPad + numberPad;
-					hashedPassword = shaHash(password);
+					shaHash H = new shaHash(password);
+					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
 						return password;
 					}
@@ -72,7 +71,8 @@ public class Digits5_Special {
 				for(int j = 0; j < counter/1000; j++) {
 					String numberPad = String.format("%02d", j);
 					password = frontPad + numberPad;
-					hashedPassword = shaHash(password);
+					shaHash H = new shaHash(password);
+					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
 						return password;
 					}
@@ -83,7 +83,8 @@ public class Digits5_Special {
 				for(int j = 0; j < counter/10000; j++) {
 					String numberPad = String.format("%01d", j);
 					password = frontPad + numberPad;
-					hashedPassword = shaHash(password);
+					shaHash H = new shaHash(password);
+					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
 						return password;
 					}
@@ -92,7 +93,8 @@ public class Digits5_Special {
 			//Character permutation length == 5
 			}else if(frontPad.length()==5) {
 				password = frontPad;
-				hashedPassword = shaHash(password);
+				shaHash H = new shaHash(password);
+				hashedPassword = H.hexPSWD;
 				if (hashedPassword.equals(this.password)) {
 					return password;
 				}
@@ -120,15 +122,4 @@ public class Digits5_Special {
 			}
 		}
 	}
-	
-	
-	//Create an SHA-256 hash for any string
-	public static String shaHash(String password) throws NoSuchAlgorithmException {
-		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		md.update(password.getBytes(StandardCharsets.UTF_8));
-		byte[] digest = md.digest();
-		String hexPSWD = String.format("%064x", new BigInteger(1, digest));
-		return hexPSWD;
-	}
-	
 }
