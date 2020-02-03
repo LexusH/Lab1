@@ -40,7 +40,11 @@ public class Driver {
 				parse.add(split[1]);	
 			}
 
-			//send parsed values through different password cracks
+			//Clear file to go into
+			ToFile export = new ToFile();
+			export.clearFile();
+			
+			//Send parsed values through different password cracks
 			Char5_A_L C = new Char5_A_L(parse.get(0));
 			C.found();
 		}

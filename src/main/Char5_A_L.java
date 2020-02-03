@@ -2,12 +2,6 @@ package main;
 
 import java.io.*;
 
-//imports needed for SHA-256 hashing
-import java.math.BigInteger;  
-import java.nio.charset.StandardCharsets; 
-import java.security.MessageDigest;  
-import java.security.NoSuchAlgorithmException;
-
 //A five char word from /usr/share/dict/words with the letter 'a' in it which gets replaced with the special character @ and the character "l" is substituted by the number "1". 
 public class Char5_A_L {
 	private String password;
@@ -37,12 +31,16 @@ public class Char5_A_L {
 						}
 					}
 					word = String.valueOf(letters);
-					String hashed = shaHash(word);
+					shaHash H = new shaHash(word);
+					String hashed = H.hexPSWD;
 					//Checking if hashed word equals password
 					if(hashed.equals(this.password)){
 						buffer.close();	
+						String output = hashed + ":" + word;
 						//Printing outcome to console and file
-						System.out.println(hashed + ":" + word);
+						System.out.println(output);
+						ToFile TF= new ToFile();
+						TF.BuffWrit(output);
 						return;
 					}
 				}
@@ -60,14 +58,5 @@ public class Char5_A_L {
 			System.out.println("ERROR");
 			System.out.println(e.getMessage());
 		}
-	}
-
-	//Method for hashing a String
-	public static String shaHash(String password) throws NoSuchAlgorithmException {
-		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		md.update(password.getBytes(StandardCharsets.UTF_8));
-		byte[] digest = md.digest();
-		String hexPSWD = String.format("%064x", new BigInteger(1, digest));
-		return hexPSWD;
 	}
 }
