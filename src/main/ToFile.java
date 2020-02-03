@@ -8,8 +8,8 @@ public class ToFile {
 	String file = "passwords.txt";
 	
 	public void BuffWrit(String content) throws IOException{
-	    BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-	    writer.write(content);
+	    BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+	    writer.write(content + "\n");
 	    writer.close();
 	}
 	

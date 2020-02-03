@@ -45,10 +45,45 @@ public class Driver {
 			export.clearFile();
 			
 			//Send parsed values through different password cracks
-			//Char5_A_L C = new Char5_A_L(parse.get(0));
-			//C.found();
-			Char7_Capital_Num C = new Char7_Capital_Num(parse.get(0));
-			C.found();
+			Boolean cont;
+			for(int i = 0; i < parse.size(); ++i) {
+				cont = false;
+				Char5_A_L C5 = new Char5_A_L(parse.get(i));
+				cont = C5.found();
+				if (cont) {
+					continue;
+				}
+				
+				Char7_Capital_Num C7 = new Char7_Capital_Num(parse.get(i));
+				cont = C7.found();
+				if (cont) {
+					continue;
+				}
+				
+				SingleWord SW = new SingleWord(parse.get(i));
+				cont = SW.found();
+				if (cont) {
+					continue;
+				}
+				
+				Digits5_Special D5 = new Digits5_Special(parse.get(i));
+				cont = D5.found();
+				if (cont) {
+					continue;
+				}
+				
+				Digits7 D7 = new Digits7(parse.get(i));
+				cont = D7.found();
+				if (cont) {
+					continue;
+				}
+				
+				//No answer found
+				System.out.println("No answer found");
+				ToFile TF= new ToFile();
+				TF.BuffWrit("No answer found");
+			}
+			
 		}
 
 		catch(Exception e){

@@ -12,7 +12,7 @@ public class Char7_Capital_Num {
 		this.password = password;
 	}
 	
-	public void found(){
+	public boolean found(){
 		try {
 			//Opens a buffer to read from the dictionary file
 			BufferedReader buffer = new BufferedReader(new FileReader("/usr/share/dict/words"));
@@ -38,7 +38,7 @@ public class Char7_Capital_Num {
 				    		System.out.println(output);
 				    		ToFile TF= new ToFile();
 				    		TF.BuffWrit(output);
-				    		return;
+				    		return true;
 				    	}
 				    }
 				}
@@ -52,5 +52,6 @@ public class Char7_Capital_Num {
 		catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return false;
 	}
 }

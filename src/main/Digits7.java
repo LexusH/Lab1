@@ -8,7 +8,7 @@ public class Digits7 {
 		this.password = password;
 	}
 	
-	public void found(){
+	public boolean found(){
 		try {
 			//Permutations of all digits of length 7
 			for (int i = 0; i < 9999999; i++) {
@@ -18,7 +18,7 @@ public class Digits7 {
 				int len = numbers.length();
 				len = 7 - len;
 				//Adds heading zeros to add to length
-				for(int j = 0; j <= len; ++j) {
+				for(int j = 0; j < len; ++j) {
 					numbers = "0" + numbers;
 				}
 				//Hash password made
@@ -31,12 +31,14 @@ public class Digits7 {
 					System.out.println(output);
 					ToFile TF= new ToFile();
 					TF.BuffWrit(output);
-					return;
+					return true;
 				}
 			}
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
+		return false;
 	}
 }

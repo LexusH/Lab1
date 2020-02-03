@@ -1,8 +1,6 @@
 package main;
 
-import java.util.ArrayList;
-
-import java.security.NoSuchAlgorithmException;  
+import java.util.ArrayList;  
 
 
 
@@ -19,7 +17,7 @@ public class Digits5_Special {
 		
 	}
 	
-	public String found() throws NoSuchAlgorithmException {
+	public boolean found() throws Exception {
 		
 		//Get every permutation of the special characters up to a length of 5
 		charPerms.add("");
@@ -38,7 +36,12 @@ public class Digits5_Special {
 					shaHash H = new shaHash(password);
 					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
-						return password;
+						String output = hashedPassword + ":" + password;
+			    		//Printing outcome to console and file
+			    		System.out.println(output);
+			    		ToFile TF= new ToFile();
+			    		TF.BuffWrit(output);
+			    		return true;
 					}
 				}
 				
@@ -50,7 +53,12 @@ public class Digits5_Special {
 					shaHash H = new shaHash(password);
 					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
-						return password;
+						String output = hashedPassword + ":" + password;
+			    		//Printing outcome to console and file
+			    		System.out.println(output);
+			    		ToFile TF= new ToFile();
+			    		TF.BuffWrit(output);
+			    		return true;
 					}
 				}
 				
@@ -62,7 +70,12 @@ public class Digits5_Special {
 					shaHash H = new shaHash(password);
 					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
-						return password;
+						String output = hashedPassword + ":" + password;
+			    		//Printing outcome to console and file
+			    		System.out.println(output);
+			    		ToFile TF= new ToFile();
+			    		TF.BuffWrit(output);
+			    		return true;
 					}
 				}
 				
@@ -74,7 +87,12 @@ public class Digits5_Special {
 					shaHash H = new shaHash(password);
 					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
-						return password;
+						String output = hashedPassword + ":" + password;
+			    		//Printing outcome to console and file
+			    		System.out.println(output);
+			    		ToFile TF= new ToFile();
+			    		TF.BuffWrit(output);
+			    		return true;
 					}
 				}
 				
@@ -86,7 +104,12 @@ public class Digits5_Special {
 					shaHash H = new shaHash(password);
 					hashedPassword = H.hexPSWD;
 					if (hashedPassword.equals(this.password)) {
-						return password;
+						String output = hashedPassword + ":" + password;
+			    		//Printing outcome to console and file
+			    		System.out.println(output);
+			    		ToFile TF= new ToFile();
+			    		TF.BuffWrit(output);
+			    		return true;
 					}
 				}
 				
@@ -96,11 +119,16 @@ public class Digits5_Special {
 				shaHash H = new shaHash(password);
 				hashedPassword = H.hexPSWD;
 				if (hashedPassword.equals(this.password)) {
-					return password;
+					String output = hashedPassword + ":" + password;
+		    		//Printing outcome to console and file
+		    		System.out.println(output);
+		    		ToFile TF= new ToFile();
+		    		TF.BuffWrit(output);
+		    		return true;
 				}
 			}
 		}
-		return "";
+		return false;
 		
 	}
 	

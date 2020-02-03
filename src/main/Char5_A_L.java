@@ -10,7 +10,7 @@ public class Char5_A_L {
 		this.password = password;
 	}
 
-	public void found(){
+	public boolean found(){
 		try {
 			//Opens a buffer to read from the dictionary file
 			BufferedReader buffer = new BufferedReader(new FileReader("/usr/share/dict/words"));
@@ -41,7 +41,7 @@ public class Char5_A_L {
 						System.out.println(output);
 						ToFile TF= new ToFile();
 						TF.BuffWrit(output);
-						return;
+						return true;
 					}
 				}
 				//If no match/word not length 5 move to new word
@@ -58,5 +58,7 @@ public class Char5_A_L {
 			System.out.println("ERROR");
 			System.out.println(e.getMessage());
 		}
+		
+		return false;
 	}
 }

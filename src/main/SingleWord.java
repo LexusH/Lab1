@@ -1,11 +1,7 @@
 package main;
 
-import java.util.Scanner;
 import java.io.*;
-//imports needed for SHA-256 hashing
-import java.math.BigInteger;  
-import java.nio.charset.StandardCharsets; 
-import java.security.MessageDigest;  
+
 import java.security.NoSuchAlgorithmException; 
 
 //Any number of chars single word from /usr/share/dict/words (Linux or Mac)
@@ -16,18 +12,23 @@ public class SingleWord {
 		this.password = password;
 	}
 	
-	String found() throws NoSuchAlgorithmException{
-		System.out.println(this.password);
+	public boolean found() throws NoSuchAlgorithmException{
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader("assets/words.txt"));
+			reader = new BufferedReader(new FileReader("/usr/share/dict/words"));
 			
 			String word = reader.readLine().trim();
 			while(word != null) {
-				String hashedPassword = shaHash(word);
-				System.out.println(word + ": " + hashedPassword);
+				shaHash H = new shaHash(word);
+				String hashedPassword = H.hexPSWD;
 				if (hashedPassword.equals(this.password)) {
-					return word;
+					reader.close();
+					//Printing outcome to console and file	
+					String output = hashedPassword + ":" + word;
+					System.out.println(output);
+					ToFile TF= new ToFile();
+					TF.BuffWrit(output);
+					return true;
 				}
 				word = reader.readLine();
 			}
@@ -36,14 +37,6 @@ public class SingleWord {
 			e.printStackTrace();
 		}
 	
-		return "";
-		
-	}
-	public static String shaHash(String password) throws NoSuchAlgorithmException {
-		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		md.update(password.getBytes(StandardCharsets.UTF_8));
-		byte[] digest = md.digest();
-		String hexPSWD = String.format("%064x", new BigInteger(1, digest));
-		return hexPSWD;
+		return false;
 	}
 }
